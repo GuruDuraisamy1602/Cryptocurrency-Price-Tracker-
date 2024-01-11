@@ -21,14 +21,10 @@ public lineChartData: ChartConfiguration['data']{datasets:[{
 data: [],
 label:`PriceTrends`,
 backgroundColor: 'rgba(148,159,177,0.2)',borderColor:'#009688',
-
-25 
 pointBackgroundColor:'#009688',
 pointBorderColor:'#009688',
 pointHoverBackgroundColor:'#009688',
 pointHoverBorderColor:'#009688',
-
-
 }
 ],
 labels:[]
@@ -37,7 +33,6 @@ publiclineChartOptions:ChartConfiguration['options']={elements:{
 point: {radius:1
 }
 },
-
 plugins:{
 legend:{display:true},
 }
@@ -46,10 +41,6 @@ public lineChartType: ChartType = 'line';@ViewChild(BaseChartDirective)myLineCha
 constructor(privateapi:ApiService,privateactivatedRoute:ActivatedRoute,privatecurrencyService:CurrencyService){ }
 ngOnInit(): void {this.activatedRoute.params.subscribe(val=>{this.coinId=val['id'];
 });
-
-
-26
- 
 this.getCoinData();this.getGraphData(this.days);this.currencyService.getCurrency()
 .subscribe(val=>{this.currency = val;this.getGraphData(this.days);this.getCoinData();
 })
@@ -68,14 +59,8 @@ this.api.getGraphicalCurrencyData(this.coinId,this.currency,this.days)
 this.myLineChart.chart?.update();
 },200);
 this.lineChartData.datasets[0].data=res.prices.map((a:any)=>{
-
-
-
-27 
         returna[1];
 });
-
-
 this.lineChartData.labels=res.prices.map((a:any)=>{letdate =new Date(a[0]);
 lettime =date.getHours()>12 ?
 `${date.getHours()-12}:${date.getMinutes()}PM`:
@@ -94,27 +79,15 @@ import{FormsModule}from'@angular/forms';
 import{CoinListComponent}from'./coin-list/coin-list.component';import { CoinDetailComponent } from './coin-detail/coin-detail.component';import{HttpClientModule} from '@angular/common/http';
 import{MatTableModule}from'@angular/material/table';
 import{MatPaginatorModule}from'@angular/material/paginator';import{MatSortModule} from'@angular/material/sort';
-
-28
- 
 import{NgChartsModule}from 'ng2-charts';
 import {AngularFireModule}from '@angular/fire/compat'import{environment}from'src/environments/environment';
 import{LoginComponent}from'./component/login/login.component';import{RegisterComponent}from'./component/register/register.component';
 import{DashboardComponent}from'./component/dashboard/dashboard.component';@NgModule({
 declarations: [AppComponent,CoinListComponent,CoinDetailComponent,LoginComponent,RegisterComponent,DashboardComponent
 ],
-
-
 imports: [BrowserModule,MatSortModule,HttpClientModule,MatPaginatorModule,MatTableModule,AppRoutingModule,
 BrowserAnimationsModule,MatToolbarModule,FormsModule,MatSelectModule,MatFormFieldModule,MatInputModule,NgChartsModule,
-
-
-
-29
- 
 AngularFireModule.initializeApp(environment.firebase)
-
-
 ],
 providers:[],
 bootstrap:[AppComponent]
